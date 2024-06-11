@@ -1,0 +1,24 @@
+services:
+  db1:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_USER: your_username
+      POSTGRES_PASSWORD: your_password
+      POSTGRES_DB: bdsendpoint
+    ports:
+      - 5432:5432
+    volumes:
+      - ./sample-data.sql:/docker-entrypoint-initdb.d/init.sql
+      
+  db2:
+    image: postgres:11
+    environment:
+      POSTGRES_USER: your_username
+      POSTGRES_PASSWORD: your_password
+      POSTGRES_DB: test
+    ports:
+      - 5433:5432
+
+  
